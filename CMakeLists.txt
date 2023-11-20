@@ -10,9 +10,16 @@ FetchContent_Declare(SFML
     GIT_TAG 2.6.x)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(CMakeSFMLProject src/main.cpp)
-target_link_libraries(CMakeSFMLProject PRIVATE sfml-graphics)
+FetchContent_Declare(LunaSVG
+    GIT_REPOSITORY https://github.com/sammycage/lunasvg)
+FetchContent_MakeAvailable(LunaSVG)
+
+add_executable(CMakeSFMLProject src/main.cpp
+        src/DFT.h)
+target_link_libraries(CMakeSFMLProject PRIVATE sfml-graphics lunasvg)
 target_compile_features(CMakeSFMLProject PRIVATE cxx_std_17)
+
+
 
 if(WIN32)
     add_custom_command(
